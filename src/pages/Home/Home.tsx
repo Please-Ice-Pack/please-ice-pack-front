@@ -1,14 +1,15 @@
 import React from 'react';
-import { Layout } from 'antd';
 
-const { Content } = Layout;
+import { HomeStyle } from '@pages/Home/style';
+import OrderHeader from '@views/Order/OrderHeader';
 
 const Home = () => (
-  <Content>
+  <HomeStyle>
+    <OrderHeader />
     <section>AI 검수결과 테이블 영역</section>
     <section>주문 비교 테이블 영역</section>
     <section>권장 패킹 옵션 영역</section>
-  </Content>
+  </HomeStyle>
 );
 
 export default Home;
