@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Modal } from 'antd';
+import { notification, Modal } from 'antd';
 
 import Button from '@components/Button';
 import {
@@ -9,10 +9,24 @@ import {
 } from '@constants/url/imageUrls';
 import theme from '@styles/theme';
 import OrderContainer from '@views/Order/common/OrderContainer';
+import { NotificationType } from '@views/Order/OrderOptionSection/types';
 import PackingOptionVerticalCard from '@views/Order/PackingOptionVerticalCard';
 import { OrderOptionSectionStyle, VerticalCardSectionStyle } from './style';
 
 const OrderOptionSection = () => {
+  /**
+   * 송장번호 스캔 성공 notification 노출
+   * @param type
+   */
+  const openScanSuccessNotification = (type: NotificationType) => {
+    notification[type]({
+      message: '송장번호 스캔 성공',
+    });
+  };
+
+  /**
+   * 스캔 버튼을 눌렀을 때 스캔 및 완료 notification 노출
+   */
   const onClickScan = useCallback(() => {
     const modal = Modal.info({
       title: '송장번호 스캔',
@@ -23,9 +37,13 @@ const OrderOptionSection = () => {
 
     setTimeout(() => {
       modal.destroy();
+      openScanSuccessNotification('success');
     }, 2000);
   }, []);
 
+  /**
+   * 누락 보고 버튼을 눌렀을 때 모달 노출
+   */
   const onClickLater = useCallback(() => {
     Modal.confirm({
       title: (
@@ -40,6 +58,9 @@ const OrderOptionSection = () => {
     });
   }, []);
 
+  /**
+   * 정상 완료 버튼을 눌렀을 때 모달 노출
+   */
   const onClickSubmit = useCallback(() => {
     Modal.confirm({
       title: (
