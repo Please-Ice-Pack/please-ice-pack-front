@@ -2,7 +2,7 @@ import React from 'react';
 import { Tooltip } from 'antd';
 import { ColumnType } from 'antd/lib/table';
 
-const column = () =>
+const OrderColumn = () =>
   [
     {
       title: '상품번호',
@@ -37,4 +37,4 @@ const column = () =>
     align: 'center' as ColumnType<never>['align'],
   }));
 
-export default column;
+export default OrderColumn;

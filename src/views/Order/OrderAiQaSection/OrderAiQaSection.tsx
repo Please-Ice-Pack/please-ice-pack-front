@@ -1,16 +1,14 @@
 import React from 'react';
 
-import column from '@views/Order/column';
+import AiQaColumn from '@views/Order/column/AiQaColumn';
 import { OrderAiQaSectionStyle, OrderQaListTableStyle } from './style';
 
 const OrderAiQaSection = () => {
   const mockData = [];
   for (let i = 0; i < 10; i += 1) {
     mockData.push({
-      number: `${i + 1}`,
-      name: `상품이름 ${i} 상품이름 ${i}상품이름 ${i}상품이름 ${i}상품이름 ${i} 상품이름 ${i}상품이름 ${i}상품이름 ${i}상품이름 ${i}상품이름 ${i}상품이름 ${i}상품이름 ${i}상품이름 ${i}상품이름 ${i}상품이름 ${i}`,
-      amount: `${i}`,
-      type: `타입 ${i}`,
+      number: `${i + 1}233-5341-3322-1233-4434`,
+      result: `이상없음`,
     });
   }
 
@@ -18,7 +16,7 @@ const OrderAiQaSection = () => {
     <OrderAiQaSectionStyle>
       <div className="packing-btn">포장 완료 목록</div>
       <OrderQaListTableStyle
-        columns={column()}
+        columns={AiQaColumn()}
         dataSource={mockData}
         pagination={{ showSizeChanger: false }}
       />
