@@ -1,19 +1,16 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { Outlet } from 'react-router-dom';
 
 import Header from '@components/layouts/Header';
 import { LayoutStyle } from './style';
 
-const { Sider, Content } = Layout;
-
 const LayoutContainer = () => (
-  <>
+  <LayoutStyle>
     <Header />
-    <LayoutStyle>
-      <Sider>AI 검수결과 테이블</Sider>
-      <Content>주문 정보 테이블</Content>
-    </LayoutStyle>
-  </>
+    <main>
+      <Outlet />
+    </main>
+  </LayoutStyle>
 );
 
 export default LayoutContainer;
