@@ -19,6 +19,9 @@ const OrderAiQaSection = () => {
         columns={AiQaColumn()}
         dataSource={mockData}
         pagination={{ showSizeChanger: false }}
+        scroll={{
+          y: 900,
+        }}
       />
     </OrderAiQaSectionStyle>
   );

@@ -2,6 +2,8 @@ import Table from '@components/Table';
 import styled from 'styled-components';
 
 export const OrderAiQaSectionStyle = styled.section`
+  width: 20%;
+
   .packing-btn {
     padding: 5px 0;
     text-align: center;
