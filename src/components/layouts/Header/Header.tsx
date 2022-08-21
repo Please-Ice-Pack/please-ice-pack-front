@@ -15,6 +15,9 @@ import {
 } from './style';
 
 const Header = () => {
+  /**
+   * 로그아웃 버튼을 클릭했을 때 모달 노출
+   */
   const onClickLogout = useCallback(() => {
     Modal.confirm({
       title: '로그아웃',
@@ -24,6 +27,9 @@ const Header = () => {
     });
   }, []);
 
+  /**
+   * 작업 가이드 버튼을 클릭했을 때 모달 노출
+   */
   const onClickWorkGuide = useCallback(() => {
     Modal.info({
       title: '작업가이드',

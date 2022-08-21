@@ -6,9 +6,15 @@ import { css } from 'styled-components';
 const color = {
   pip_purple_01: '#532472',
   pip_purple_02: '#DCD5E1',
-  pip_gray_01: '#6B6B6B',
-  pip_gray_02: '#EAEAEA',
-  pip_blue: 'F3F9FF',
+  pip_gray_01: '#353535',
+  pip_gray_02: '#9A9A9A',
+  pip_gray_03: '#D9D9D9',
+  pip_red: '#FF000F',
+  pip_blue_01: '#F3F9FF',
+  pip_blue_02: '#FFFFFF',
+  pip_green: '#029723',
+  pip_orange: '#FF9900',
+  pip_pink: '#F6CFCC',
 } as const;
 
 /**
