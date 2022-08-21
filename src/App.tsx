@@ -21,6 +21,10 @@ const App = () => (
           <Route path={LOGIN_PAGE_URL_PATH} element={<Login />} />
           <Route element={<LayoutContainer />}>
             <Route path={INTRO_PAGE_URL_PATH} element={<Home />} />
+            <Route
+              path="*"
+              element={<div>ERROR 404 PAGE ! 맞는 페이지가 없네요 !</div>}
+            />
           </Route>
         </Routes>
       </BrowserRouter>
