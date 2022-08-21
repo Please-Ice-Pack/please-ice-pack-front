@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Modal } from 'antd';
 
-import theme from '../../../styles/theme';
+import theme from '@styles/theme';
 import {
   AuthOptionStyle,
   AuthTypeStyle,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 
-import Header from '../Header';
+import Header from '@components/layouts/Header';
 import { LayoutStyle } from './style';
 
 const { Sider, Content } = Layout;
