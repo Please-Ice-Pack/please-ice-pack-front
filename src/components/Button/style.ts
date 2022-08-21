@@ -15,6 +15,16 @@ export const ButtonStyle = styled.div<IButtonStyleProps>`
     padding: 6px 38px;
     border-radius: ${props => props.radius || 20}px;
 
+    &:disabled {
+      color: white;
+      background-color: ${props => props.theme.color.pip_gray_02};
+
+      &:hover {
+        color: white;
+        background-color: ${props => props.theme.color.pip_gray_02};
+      }
+    }
+
     &:hover {
       background-color: white;
       color: black;
