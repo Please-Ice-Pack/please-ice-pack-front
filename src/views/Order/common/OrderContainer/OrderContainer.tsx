@@ -7,14 +7,15 @@ import {
 } from './style';
 
 interface IOrderContainerProps {
+  className?: string;
   title: string;
   children?: ReactNode;
 }
 
 const OrderContainer: FC<IOrderContainerProps> = props => {
-  const { title, children } = props;
+  const { className, title, children } = props;
   return (
-    <OrderContainerStyle>
+    <OrderContainerStyle className={className}>
       <OrderContainerTitle>{title}</OrderContainerTitle>
       <OrderContainerContent>{children}</OrderContainerContent>
     </OrderContainerStyle>
