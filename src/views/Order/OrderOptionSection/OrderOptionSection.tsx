@@ -21,6 +21,7 @@ const OrderOptionSection = () => {
   const openScanSuccessNotification = (type: NotificationType) => {
     notification[type]({
       message: '송장번호 스캔 성공',
+      duration: 2.5,
     });
   };
 
