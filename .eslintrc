@@ -39,6 +39,9 @@
         "linebreak-style": "off",
         "no-param-reassign": "off",
         "no-use-before-define": "off",
+        "no-shadow": "off",
+        "global-require": "off",
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
         "@typescript-eslint/no-use-before-define": ["error"],
         "import/extensions": [
             "error",

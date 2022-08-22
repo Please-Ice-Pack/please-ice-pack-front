@@ -10,8 +10,8 @@
       "@static/*": ["./static/*"],
       "@store/*": ["./store/*"],
       "@styles/*": ["./styles/*"],
-      "@types/*": ["./types/*"],
-      "@views/*": ["./views/*"]
+      "@views/*": ["./views/*"],
+      "@services/*": ["./services/*"]
     }
   }
 }
