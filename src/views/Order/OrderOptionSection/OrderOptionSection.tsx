@@ -23,10 +23,10 @@ const OrderOptionSection: FC<IOrderOptionSectionProps> = props => {
   const { orderId, setOrderId } = props;
 
   /**
-   * 스캔 버튼을 눌렀을 때 스캔 및 완료 notification 노출
+   * 스캔 버튼을 눌렀을 때 테스트용 주문 번호 설정
    */
   const onClickScan = useCallback(() => {
-    setOrderId(3);
+    setOrderId(1);
   }, [setOrderId]);
 
   /**
