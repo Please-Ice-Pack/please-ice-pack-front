@@ -11,7 +11,7 @@ const Error404 = () => (
         height={60}
         alt="주의 아이콘"
       />
-      <div className="error-title">죄송합니다</div>
+      <div className="error-title">찾으시는 페이지가 없습니다.</div>
       <p className="error-desc">
         현재 요청하신 페이지를 찾을 수 없거나 오류가 발생하였습니다.
         <br />
