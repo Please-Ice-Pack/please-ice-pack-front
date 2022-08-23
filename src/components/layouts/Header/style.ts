@@ -8,6 +8,7 @@ export const HeaderStyle = styled.header`
   position: sticky;
   top: 0;
   z-index: ${props => props.theme.zIndex.header};
+  height: 120px;
   padding: 15px 64px;
   box-shadow: rgb(237 237 237) 0px 1px 0px 0px;
   background-color: white;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Error404Container = styled.div`
-  height: 100%;
+  height: calc(100vh - 120px);
   display: flex;
   justify-content: center;
 
