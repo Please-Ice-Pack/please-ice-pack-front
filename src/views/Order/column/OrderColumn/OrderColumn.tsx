@@ -3,6 +3,7 @@ import { Tooltip } from 'antd';
 import { ColumnType } from 'antd/lib/table';
 
 import { orderDetailType } from '@hooks/query/order/types';
+import theme from '@styles/theme';
 import { COLD_TYPE } from '@constants/order/order';
 
 /**
@@ -16,7 +17,17 @@ const OrderColumn = () =>
       dataIndex: 'isMatched',
       title: '일치여부',
       width: 30,
-      render: (record: boolean) => (record ? '일치' : '불일치'),
+      render: (record: boolean) => ({
+        props: {
+          style: {
+            backgroundColor: record
+              ? theme.color.pip_green
+              : theme.color.pip_red,
+            fontWeight: 'bold',
+          },
+        },
+        children: record ? '일치' : '불일치',
+      }),
       sorter: (a: orderDetailType, b: orderDetailType) =>
         a.isMatched === b.isMatched ? 0 : a.isMatched ? 1 : -1,
     },
