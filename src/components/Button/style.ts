@@ -14,6 +14,7 @@ export const ButtonStyle = styled.div<IButtonStyleProps>`
     height: 36px;
     padding: 6px 38px;
     border-radius: ${props => props.radius || 20}px;
+    border: none;
 
     &:disabled {
       color: white;
@@ -26,9 +27,8 @@ export const ButtonStyle = styled.div<IButtonStyleProps>`
     }
 
     &:hover {
-      background-color: white;
-      color: black;
-      border-color: ${props => props.theme.color.pip_purple_01};
+      background-color: ${props => props.color};
+      color: white;
     }
 
     &.small {

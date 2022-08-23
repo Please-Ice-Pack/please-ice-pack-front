@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Button as AntdButton, ButtonProps as AntdButtonProps } from 'antd';
 
+import theme from '@styles/theme';
 import { ButtonStyle } from './style';
 
 interface IButtonProps extends AntdButtonProps {
@@ -8,7 +9,13 @@ interface IButtonProps extends AntdButtonProps {
 }
 
 const Button: FC<IButtonProps> = props => {
-  const { children, size, color, radius, ...rest } = props;
+  const {
+    children,
+    size,
+    color = theme.color.pip_purple_01,
+    radius,
+    ...rest
+  } = props;
   return (
     <ButtonStyle radius={radius} color={color}>
       <AntdButton className={size} {...rest}>
