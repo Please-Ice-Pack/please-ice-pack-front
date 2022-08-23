@@ -66,12 +66,28 @@ export const handlers = [
               productName: '상품1',
               amount: 1,
               coldType: 'NORMAL',
+              isMatched: true,
             },
             {
               productId: 2,
               productName: '상품2',
               amount: 1,
               coldType: 'REFRIGERATED',
+              isMatched: false,
+            },
+            {
+              productId: 3,
+              productName: '상품3',
+              amount: 5,
+              coldType: 'NORMAL',
+              isMatched: false,
+            },
+            {
+              productId: 4,
+              productName: '상품4',
+              amount: 2,
+              coldType: 'FROZEN',
+              isMatched: false,
             },
           ],
           recognitionResults: [
