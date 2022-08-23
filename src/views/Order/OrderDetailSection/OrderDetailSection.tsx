@@ -38,9 +38,10 @@ const OrderDetailSection: FC<IOrderDetailSectionProps> = props => {
           </div>
           <div className="order-date">
             <span className="order-detail-title">주문일시 : </span>
-            {`${data?.data?.orderInfo.orderDate.split('T')[0]} (${
-              data?.data?.orderInfo.orderDate.split('T')[1]
-            })`}
+            {data?.data?.orderInfo.orderDate &&
+              `${data?.data?.orderInfo.orderDate.split('T')[0]} (${
+                data?.data?.orderInfo.orderDate.split('T')[1]
+              })`}
           </div>
         </div>
       </OrderContainer>
