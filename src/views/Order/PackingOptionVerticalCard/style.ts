@@ -22,6 +22,11 @@ export const CardContentStyle = styled.div`
   justify-content: space-around;
   padding: 10px 0;
 
+  .size-description {
+    text-align: center;
+    white-space: pre-wrap;
+  }
+
   .size-option,
   .number-option {
     display: flex;

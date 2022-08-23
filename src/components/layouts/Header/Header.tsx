@@ -1,7 +1,8 @@
 import React, { useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Modal } from 'antd';
 
+import { removeAuth } from '@lib/utils/auth';
 import theme from '@styles/theme';
 import {
   AuthOptionStyle,
@@ -15,6 +16,7 @@ import {
 } from './style';
 
 const Header = () => {
+  const navigate = useNavigate();
   /**
    * 로그아웃 버튼을 클릭했을 때 모달 노출
    */
@@ -24,8 +26,12 @@ const Header = () => {
       content: '로그아웃 하시겠습니까?',
       okText: '로그아웃',
       cancelText: '닫기',
+      onOk: () => {
+        removeAuth();
+        navigate(0);
+      },
     });
-  }, []);
+  }, [navigate]);
 
   /**
    * 작업 가이드 버튼을 클릭했을 때 모달 노출
