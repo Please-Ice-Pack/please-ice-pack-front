@@ -14,18 +14,16 @@ const OrderContent = () => {
   return (
     <OrderContentStyle>
       <ErrorBoundary fallback={<div>에러 발생!</div>}>
-        {/* AI 검수결과 테이블 영역 */}
         <Suspense fallback={<div>로딩중...</div>}>
+          {/* AI 검수결과 테이블 영역 */}
           <OrderAiQaSection
             orderId={orderId}
             packingOrderList={packingOrderList}
             setPackingOrderList={setPackingOrderList}
           />
-        </Suspense>
-        {/* 주문 비교 테이블 영역 */}
-        <OrderDetailSection />
-        {/* 주문 검수 결과 옵션 영역 */}
-        <Suspense fallback={<div>로딩중...</div>}>
+          {/* 주문 비교 테이블 영역 */}
+          <OrderDetailSection orderId={orderId} />
+          {/* 주문 검수 결과 옵션 영역 */}
           <OrderOptionSection orderId={orderId} setOrderId={setOrderId} />
         </Suspense>
       </ErrorBoundary>

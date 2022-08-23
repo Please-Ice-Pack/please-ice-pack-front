@@ -7,6 +7,7 @@ import {
   DRY_ICE_IMAGE_PATH,
   ICE_PACK_IMAGE_PATH,
 } from '@constants/url/imageUrls';
+import { REFRIGERANT_TYPE } from '@constants/order/order';
 import theme from '@styles/theme';
 import { useOrderList } from '@hooks/query/order/useOrderList';
 import { refrigerantsOptionType } from '@hooks/query/order/types';
@@ -71,14 +72,14 @@ const OrderOptionSection: FC<IOrderOptionSectionProps> = props => {
    * 드라이 아이스 팩에 대한 추천 정보를 담고있는 객체
    */
   const dryIce = data?.data?.recommendedPackingOption?.refrigerants.filter(
-    (item: refrigerantsOptionType) => item.type === 'DRY_ICE',
+    (item: refrigerantsOptionType) => item.type === REFRIGERANT_TYPE.DRY_ICE,
   )[0];
 
   /**
    * 일반적인 아이스 팩에 대한 추천 정보를 담고있는 객체
    */
   const icePack = data?.data?.recommendedPackingOption?.refrigerants.filter(
-    (item: refrigerantsOptionType) => item.type === 'ICE_PACK',
+    (item: refrigerantsOptionType) => item.type === REFRIGERANT_TYPE.ICE_PACK,
   )[0];
 
   return (

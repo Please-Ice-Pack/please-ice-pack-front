@@ -35,4 +35,6 @@ export const OrderAiQaSectionStyle = styled.section`
   }
 `;
 
-export const OrderQaListTableStyle = styled(Table)``;
+export const OrderQaListTableStyle = styled(Table)`
+  background-color: white;
+`;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const OrderContainerStyle = styled.article`
+  background-color: white;
   border: 1px solid ${props => props.theme.color.pip_gray_01};
 `;
 

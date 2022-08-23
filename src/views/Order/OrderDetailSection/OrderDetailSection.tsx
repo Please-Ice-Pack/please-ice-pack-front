@@ -1,39 +1,55 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import Table from '@components/Table';
+import { useOrderList } from '@hooks/query/order/useOrderList';
 import { OrderDetailSectionStyle } from '@views/Order/OrderDetailSection/style';
 import OrderContainer from '@views/Order/common/OrderContainer';
 import OrderColumn from '@views/Order/column/OrderColumn';
+import OrderQaColumn from '@views/Order/column/OrderQaColumn';
 
-const OrderDetailSection = () => {
-  const mockData = [];
-  for (let i = 0; i < 10; i += 1) {
-    mockData.push({
-      number: `${i + 1}233-5341-3322-1233-4434`,
-      name: `상품 ${i + 1}`,
-      amount: `${i + 1}`,
-      type: `타입 ${i}`,
-    });
-  }
+interface IOrderDetailSectionProps {
+  orderId: number | null;
+}
+
+const OrderDetailSection: FC<IOrderDetailSectionProps> = props => {
+  const { orderId } = props;
+
+  const { data } = useOrderList(orderId, {
+    enabled: orderId !== null && orderId > 0,
+  });
 
   return (
     <OrderDetailSectionStyle>
-      <div className="packing-stage-number">현재 작업대 No: 1</div>
       <OrderContainer className="order-detail-section" title="스캔된 주문">
         <div className="order-detail-left-section">
-          <div className="order-number">주문번호: 12</div>
-          <div className="invoice-number">송장번호: 3333-4444-2222-1111</div>
+          <div className="order-number">
+            <span className="order-detail-title">주문번호 : </span>
+            {data?.data?.orderInfo.orderId}
+          </div>
+          <div className="invoice-number">
+            <span className="order-detail-title">송장번호 : </span>
+            {data?.data?.orderInfo.trackingNumber}
+          </div>
         </div>
         <div className="order-detail-right-section">
-          <div className="order-user">주문자명: 이진희</div>
-          <div className="order-date">주문일시: 2021-03-01</div>
+          <div className="order-user">
+            <span className="order-detail-title">주문자명 : </span>
+            {data?.data?.orderInfo.customerName}
+          </div>
+          <div className="order-date">
+            <span className="order-detail-title">주문일시 : </span>
+            {data?.data?.orderInfo.orderDate &&
+              `${data?.data?.orderInfo.orderDate.split('T')[0]} (${
+                data?.data?.orderInfo.orderDate.split('T')[1]
+              })`}
+          </div>
         </div>
       </OrderContainer>
       <div className="compare-order-detail">
         <OrderContainer title="주문상세">
           <Table
             columns={OrderColumn()}
-            dataSource={mockData}
+            dataSource={data?.data?.orderDetails}
             scroll={{
               y: 500,
             }}
@@ -41,8 +57,8 @@ const OrderDetailSection = () => {
         </OrderContainer>
         <OrderContainer title="Ai 검수결과">
           <Table
-            columns={OrderColumn()}
-            dataSource={mockData}
+            columns={OrderQaColumn()}
+            dataSource={data?.data?.recognitionResults}
             scroll={{
               y: 500,
             }}
