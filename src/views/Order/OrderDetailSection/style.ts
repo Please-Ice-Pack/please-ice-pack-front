@@ -3,10 +3,6 @@ import styled from 'styled-components';
 export const OrderDetailSectionStyle = styled.section`
   width: 65%;
 
-  .packing-stage-number {
-    margin-bottom: 20px;
-  }
-
   .order-detail-section {
     & > div {
       &:last-child {
@@ -14,6 +10,7 @@ export const OrderDetailSectionStyle = styled.section`
 
         .order-detail-left-section,
         .order-detail-right-section {
+          font-weight: bold;
           flex-grow: 1;
 
           & > div {
@@ -25,6 +22,12 @@ export const OrderDetailSectionStyle = styled.section`
               margin-bottom: 6px;
             }
           }
+        }
+
+        .order-detail-title {
+          color: ${props => props.theme.color.pip_gray_02};
+          margin-right: 10px;
+          font-weight: 600;
         }
       }
     }
