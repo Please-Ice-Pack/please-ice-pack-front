@@ -16,6 +16,14 @@ export type refrigerantsOptionType = {
 };
 
 /**
+ * 주문 번호와 해당 주문과 Ai 검출 결과가 일치하는지 여부
+ */
+export type packingInfoType = {
+  packingId: number;
+  isMatched: boolean | string;
+};
+
+/**
  * 주문 패킹 리스트 응답 데이터 타입
  */
 export type orderListResponseDataType = {
@@ -26,10 +34,7 @@ export type orderListResponseDataType = {
     orderDate: string;
   };
 
-  packingInfo: {
-    packingId: number;
-    isMatched: boolean;
-  };
+  packingInfo: packingInfoType;
 
   orderDetails: {
     productId: number;
