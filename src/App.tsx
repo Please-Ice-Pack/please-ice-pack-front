@@ -19,7 +19,14 @@ import {
 } from '@constants/url/internalUrl';
 
 const App = () => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        retry: 0,
+      },
+    },
+  });
 
   return (
     <>
