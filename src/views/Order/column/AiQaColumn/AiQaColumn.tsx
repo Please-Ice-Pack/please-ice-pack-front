@@ -4,12 +4,14 @@ import { ColumnType } from 'antd/lib/table';
 const AiQaColumn = () =>
   [
     {
+      key: 'packingId',
+      dataIndex: 'packingId',
       title: '주문번호',
-      dataIndex: 'number',
     },
     {
+      key: 'isMatched',
+      dataIndex: 'isMatched',
       title: 'AI 검수결과',
-      dataIndex: 'result',
     },
   ].map(item => ({
     ...item,

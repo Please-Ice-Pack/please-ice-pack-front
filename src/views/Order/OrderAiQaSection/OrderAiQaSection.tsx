@@ -1,23 +1,44 @@
-import React from 'react';
+import React, { Dispatch, FC, SetStateAction, useEffect } from 'react';
 
+import { packingInfoType } from '@hooks/query/order/types';
+import { useOrderList } from '@hooks/query/order/useOrderList';
 import AiQaColumn from '@views/Order/column/AiQaColumn';
 import { OrderAiQaSectionStyle, OrderQaListTableStyle } from './style';
 
-const OrderAiQaSection = () => {
-  const mockData = [];
-  for (let i = 0; i < 10; i += 1) {
-    mockData.push({
-      number: `${i + 1}233-5341-3322-1233-4434`,
-      result: `이상없음`,
-    });
-  }
+interface IOrderAiQaSectionProps {
+  orderId: number | null;
+  packingOrderList: packingInfoType[];
+  setPackingOrderList: Dispatch<SetStateAction<packingInfoType[]>>;
+}
+
+const OrderAiQaSection: FC<IOrderAiQaSectionProps> = props => {
+  const { orderId, packingOrderList, setPackingOrderList } = props;
+
+  const { data } = useOrderList(orderId, {
+    enabled: orderId !== null && orderId > 0,
+  });
+
+  useEffect(() => {
+    if (!data?.data?.packingInfo) return;
+
+    setPackingOrderList(prev => [
+      ...prev,
+      {
+        packingId: data.data.packingInfo.packingId,
+        isMatched: data.data.packingInfo.isMatched ? '이상 없음' : '이상 있음',
+      },
+    ]);
+  }, [data, setPackingOrderList]);
 
   return (
     <OrderAiQaSectionStyle>
       <div className="packing-btn">포장 완료 목록</div>
       <OrderQaListTableStyle
+        rowClassName={record =>
+          record.isMatched === '이상 없음' ? 'matched' : 'unmatched'
+        }
         columns={AiQaColumn()}
-        dataSource={mockData}
+        dataSource={packingOrderList}
         pagination={{ showSizeChanger: false }}
         scroll={{
           y: 900,
