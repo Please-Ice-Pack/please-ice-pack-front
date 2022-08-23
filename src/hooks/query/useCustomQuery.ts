@@ -8,6 +8,7 @@ import { UseQueryOptions } from '@tanstack/react-query/src/types';
 
 type UseCustomQueryResult<TData, TError> = {
   invalidate: () => void;
+  isFetched: boolean;
 } & UseQueryResult<TData, TError>;
 
 export const useCustomQuery = <
@@ -24,10 +25,17 @@ export const useCustomQuery = <
   >,
 ): UseCustomQueryResult<TData, TError> => {
   const queryClient = useQueryClient();
-  const results = useQuery(queryKey, queryFn, { ...options, suspense: true });
+  const results = useQuery(queryKey, queryFn, {
+    ...options,
+    suspense: true,
+  });
   /**
    * 해당 쿼리 무효화
    */
   const invalidate = () => queryClient.invalidateQueries(queryKey);
-  return { ...results, invalidate };
+  /**
+   * 해당 쿼리가 이미 실행되었는 지
+   */
+  const isFetched = !!queryClient.getQueryData(queryKey);
+  return { ...results, invalidate, isFetched };
 };
