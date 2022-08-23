@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction, FC, useCallback } from 'react';
-import { Modal } from 'antd';
 
 import Button from '@components/Button';
 import {
@@ -18,10 +17,12 @@ import { OrderOptionSectionStyle, VerticalCardSectionStyle } from './style';
 interface IOrderOptionSectionProps {
   orderId: number | null;
   setOrderId: Dispatch<SetStateAction<number | null>>;
+  onPackingDone: () => void;
+  onPackingHold: () => void;
 }
 
 const OrderOptionSection: FC<IOrderOptionSectionProps> = props => {
-  const { orderId, setOrderId } = props;
+  const { orderId, setOrderId, onPackingDone, onPackingHold } = props;
 
   /**
    * 스캔 버튼을 눌렀을 때 테스트용 주문 번호 설정
@@ -30,57 +31,28 @@ const OrderOptionSection: FC<IOrderOptionSectionProps> = props => {
     setOrderId(1);
   }, [setOrderId]);
 
-  /**
-   * 누락 보고 버튼을 눌렀을 때 모달 노출
-   */
-  const onClickLater = useCallback(() => {
-    Modal.confirm({
-      title: (
-        <>
-          Ai 검수 결과와 다른 결과입니다
-          <br />
-          그대로 진행하시겠습니까?
-        </>
-      ),
-      okText: '예',
-      cancelText: '아니오',
-    });
-  }, []);
-
-  /**
-   * 정상 완료 버튼을 눌렀을 때 모달 노출
-   */
-  const onClickSubmit = useCallback(() => {
-    Modal.confirm({
-      title: (
-        <>
-          Ai 검수 결과와 같은 결과입니다.
-          <br />
-          다음 작업을 진행하시겠습니까?
-        </>
-      ),
-      okText: '예',
-      cancelText: '아니오',
-    });
-  }, []);
-
-  const { data, isFetched } = useOrderList(orderId, {
-    enabled: orderId !== null && orderId > 0,
-  });
+  const { data: orderListData, isFetched: isOrderListFetched } = useOrderList(
+    orderId,
+    {
+      enabled: orderId !== null && orderId > 0,
+    },
+  );
 
   /**
    * 드라이 아이스 팩에 대한 추천 정보를 담고있는 객체
    */
-  const dryIce = data?.data?.recommendedPackingOption?.refrigerants.filter(
-    (item: refrigerantsOptionType) => item.type === REFRIGERANT_TYPE.DRY_ICE,
-  )[0];
+  const dryIce =
+    orderListData?.data?.recommendedPackingOption?.refrigerants.filter(
+      (item: refrigerantsOptionType) => item.type === REFRIGERANT_TYPE.DRY_ICE,
+    )[0];
 
   /**
    * 일반적인 아이스 팩에 대한 추천 정보를 담고있는 객체
    */
-  const icePack = data?.data?.recommendedPackingOption?.refrigerants.filter(
-    (item: refrigerantsOptionType) => item.type === REFRIGERANT_TYPE.ICE_PACK,
-  )[0];
+  const icePack =
+    orderListData?.data?.recommendedPackingOption?.refrigerants.filter(
+      (item: refrigerantsOptionType) => item.type === REFRIGERANT_TYPE.ICE_PACK,
+    )[0];
 
   return (
     <OrderOptionSectionStyle>
@@ -89,21 +61,21 @@ const OrderOptionSection: FC<IOrderOptionSectionProps> = props => {
         <VerticalCardSectionStyle>
           <PackingOptionVerticalCard
             title="박스"
-            isFetched={isFetched}
-            size={data?.data?.recommendedPackingOption?.box.size}
-            number={data?.data?.recommendedPackingOption?.box.amount}
+            isFetched={isOrderListFetched}
+            size={orderListData?.data?.recommendedPackingOption?.box.size}
+            number={orderListData?.data?.recommendedPackingOption?.box.amount}
             imgUrl={BOX_IMAGE_PATH}
           />
           <PackingOptionVerticalCard
             title="아이스 팩"
-            isFetched={isFetched}
+            isFetched={isOrderListFetched}
             size={dryIce?.size}
             number={dryIce?.amount}
             imgUrl={ICE_PACK_IMAGE_PATH}
           />
           <PackingOptionVerticalCard
             title="드라이아이스"
-            isFetched={isFetched}
+            isFetched={isOrderListFetched}
             size={icePack?.size}
             number={icePack?.amount}
             imgUrl={DRY_ICE_IMAGE_PATH}
@@ -112,7 +84,11 @@ const OrderOptionSection: FC<IOrderOptionSectionProps> = props => {
       </OrderContainer>
       <div className="result-option-section">
         <div className="scan-btn-section">
-          <Button radius={25} onClick={onClickScan} disabled={isFetched}>
+          <Button
+            radius={25}
+            onClick={onClickScan}
+            disabled={isOrderListFetched}
+          >
             스캔 <div className="scan-sub-title">송장번호 스캔하기</div>
           </Button>
         </div>
@@ -121,16 +97,16 @@ const OrderOptionSection: FC<IOrderOptionSectionProps> = props => {
           <Button
             color={theme.color.pip_red}
             radius={25}
-            onClick={onClickLater}
-            disabled={!isFetched}
+            onClick={onPackingHold}
+            disabled={!isOrderListFetched}
           >
             누락 보고 <div className="error-sub-title">나중에 작업하기</div>
           </Button>
           <Button
             color={theme.color.pip_green}
             radius={25}
-            onClick={onClickSubmit}
-            disabled={!isFetched}
+            onClick={onPackingDone}
+            disabled={!isOrderListFetched}
           >
             정상 완료 <div className="submit-sub-title">다음 작업 진행하기</div>
           </Button>
