@@ -1,4 +1,9 @@
-import { BOX_TYPE, COLD_TYPE, REFRIGERANT_TYPE } from '@constants/order/order';
+import {
+  BOX_TYPE,
+  COLD_TYPE,
+  ORDER_PACKING_STATUS,
+  REFRIGERANT_TYPE,
+} from '@constants/order/order';
 
 /**
  * 추천 박스 사이즈 타입
@@ -15,6 +20,12 @@ export type refrigerantType =
  * 냉장 보관 종류 타입
  */
 export type coldType = typeof COLD_TYPE[keyof typeof COLD_TYPE];
+
+/**
+ * 포장 상태 타입
+ */
+export type orderPackingStatusType =
+  typeof ORDER_PACKING_STATUS[keyof typeof ORDER_PACKING_STATUS];
 
 /**
  * 추천 박스 옵션 타입
@@ -54,6 +65,23 @@ export type orderDetailType = {
 };
 
 /**
+ * 주문 패킹 상태 변경하는 mutate의 request variable 타입
+ */
+export type orderStatusMutateVariableType = {
+  orderId: number | null;
+  status: orderPackingStatusType | null;
+};
+
+/**
+ * 주문 패킹 리스트 응답 타입
+ */
+export type orderListResponseType = {
+  code: string;
+  data: orderListResponseDataType;
+  message: string;
+};
+
+/**
  * 주문 패킹 리스트 응답 데이터 타입
  */
 export type orderListResponseDataType = {
@@ -88,5 +116,24 @@ export type orderListResponseDataType = {
   recommendedPackingOption: {
     box: boxOptionType;
     refrigerants: refrigerantsOptionType[];
+  };
+};
+
+/**
+ * 포장 상태 변경 응답 타입
+ */
+export type orderStatusResponseType = {
+  code: string;
+  data: {
+    employee: number;
+    isMatched: boolean;
+    packingId: number;
+    status: orderPackingStatusType;
+  };
+  message: string;
+  page: {
+    number: number;
+    size: number;
+    totalCount: number;
   };
 };
