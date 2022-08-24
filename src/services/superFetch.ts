@@ -43,7 +43,7 @@ export const getFetcher = ({
       success: successMessage,
       error: {
         render({ data }: any) {
-          return data?.response?.data.message || errorMessage;
+          return data?.response?.data?.message || errorMessage;
         },
       },
     },
@@ -65,7 +65,7 @@ export const postFetcher = <T>({
       success: successMessage,
       error: {
         render({ data }: any) {
-          return data?.response?.data.message || errorMessage;
+          return data?.response?.data?.message || errorMessage;
         },
       },
     },
@@ -87,7 +87,7 @@ export const patchFetcher = <T>({
       success: successMessage,
       error: {
         render({ data }: any) {
-          return data?.response?.data.message || errorMessage;
+          return data?.response?.data?.message || errorMessage;
         },
       },
     },
