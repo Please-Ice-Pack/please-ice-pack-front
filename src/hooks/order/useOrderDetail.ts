@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Modal } from 'antd';
 
-import { packingInfoType } from '@hooks/query/order/types';
 import { useOrderListUpdate } from '@hooks/query/order/useOrderListUpdate';
 import { ORDER_PACKING_STATUS } from '@constants/order/order';
 
@@ -13,13 +12,6 @@ export const useOrderDetail = () => {
    * 주문 번호 상태
    */
   const [orderId, setOrderId] = useState<number | null>(null);
-
-  /**
-   * 패킹한 주문리스트
-   */
-  const [packingOrderList, setPackingOrderList] = useState<packingInfoType[]>(
-    [],
-  );
 
   /**
    * 패킹 상태 변경 mutate 함수
@@ -65,8 +57,6 @@ export const useOrderDetail = () => {
   return {
     orderId,
     setOrderId,
-    packingOrderList,
-    setPackingOrderList,
     onPackingDone,
     onPackingHold,
   };
