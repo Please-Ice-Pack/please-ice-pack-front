@@ -14,7 +14,7 @@ export const useOrderDetail = () => {
   const [orderId, setOrderId] = useState<number | null>(null);
 
   /**
-   * 패킹 상태 변경 mutate 함수
+   * 포장 상태 변경 mutate 함수
    */
   const { mutate } = useOrderListUpdate(orderId);
 

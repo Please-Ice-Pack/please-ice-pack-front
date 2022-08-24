@@ -41,7 +41,7 @@ export const handlers = [
   }),
 
   /**
-   * 주문 패킹 리스트 성공 mock response
+   * 주문 포장 리스트 성공 mock response
    */
   rest.get(`${baseUrl}/v1/packings/orders/1`, (req, res, ctx) =>
     res(
@@ -130,7 +130,7 @@ export const handlers = [
   ),
 
   /**
-   * 주문 패킹 리스트 실패(이미 처리된 주문) mock response
+   * 주문 포장 리스트 실패(이미 처리된 주문) mock response
    */
   rest.get(`${baseUrl}/v1/packings/orders/2`, (req, res, ctx) =>
     res(
@@ -144,7 +144,7 @@ export const handlers = [
   ),
 
   /**
-   * 주문 패킹 리스트 실패(존재하지 않는 주문) mock response
+   * 주문 포장 리스트 실패(존재하지 않는 주문) mock response
    */
   rest.get(`${baseUrl}/v1/packings/orders/3`, (req, res, ctx) =>
     res(
@@ -158,7 +158,7 @@ export const handlers = [
   ),
 
   /**
-   * 주문 패킹 상태 변경 mock response
+   * 주문 포장 상태 변경 mock response
    */
   rest.patch(`${baseUrl}/v1/packings/status/1`, async (req, res, ctx) => {
     const { status } = await req.json();
@@ -220,7 +220,7 @@ export const handlers = [
           ctx.status(400),
           ctx.json({
             code: 'ERROR',
-            message: '패킹 상태 변경 요청 실패',
+            message: '포장 상태 변경 요청 실패',
             data: null,
           }),
         );

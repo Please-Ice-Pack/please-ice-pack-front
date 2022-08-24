@@ -55,7 +55,7 @@ const OrderDetailSection: FC<IOrderDetailSectionProps> = props => {
             }}
           />
         </OrderContainer>
-        <OrderContainer title="Ai 검수결과">
+        <OrderContainer title="Ai 인식결과">
           <Table
             columns={OrderQaColumn()}
             dataSource={data?.data?.recognitionResults}

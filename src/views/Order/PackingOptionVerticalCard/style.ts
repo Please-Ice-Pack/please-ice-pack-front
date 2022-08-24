@@ -39,4 +39,9 @@ export const CardContentStyle = styled.div`
     font-size: 18px;
     color: ${props => props.theme.color.pip_gray_01};
   }
+
+  .value {
+    font-size: 20px;
+    font-weight: bold;
+  }
 `;

@@ -56,7 +56,7 @@ const OrderOptionSection: FC<IOrderOptionSectionProps> = props => {
 
   return (
     <OrderOptionSectionStyle>
-      <OrderContainer title="권장 패킹 옵션">
+      <OrderContainer title="권장 포장 옵션">
         <VerticalCardSectionStyle>
           <PackingOptionVerticalCard
             title="박스"

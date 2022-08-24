@@ -69,7 +69,7 @@ export const ORDER_PACKING_STATUS = {
 };
 
 /**
- * 세션 스토리지에 담아둘 패킹한 주문리스트 키
+ * 세션 스토리지에 담아둘 포장한 주문리스트 키
  */
 export const ORDER_LIST_KEY = {
   PACKING: 'PACKING',
