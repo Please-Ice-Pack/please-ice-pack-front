@@ -3,7 +3,7 @@ import { Tooltip } from 'antd';
 import { ColumnType } from 'antd/lib/table';
 
 /**
- * Ai 검수결과 테이블에 해당하는 column
+ * Ai 인식결과 테이블에 해당하는 column
  * @constructor
  */
 const OrderQaColumn = () =>

@@ -23,7 +23,7 @@ export const useOrderDetail = () => {
    */
   const onPackingDone = () => {
     Modal.confirm({
-      title: 'Ai 검수 결과와 같은 결과입니다. 다음 작업을 진행하시겠습니까?',
+      title: 'Ai 인식 결과와 같은 결과입니다. 다음 작업을 진행하시겠습니까?',
       okText: '예',
       cancelText: '아니오',
       onOk: () => {
@@ -41,7 +41,7 @@ export const useOrderDetail = () => {
    */
   const onPackingHold = () => {
     Modal.confirm({
-      title: 'Ai 검수 결과와 다른 결과입니다. 그대로 진행하시겠습니까?',
+      title: 'Ai 인식 결과와 다른 결과입니다. 그대로 진행하시겠습니까?',
       okText: '예',
       cancelText: '아니오',
       onOk: () => {

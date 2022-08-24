@@ -17,11 +17,11 @@ const OrderContent = () => {
     <OrderContentStyle>
       <ErrorBoundary FallbackComponent={Error400}>
         <Suspense fallback={<Loading />}>
-          {/* AI 검수결과 테이블 영역 */}
+          {/* Ai 인식결과 테이블 영역 */}
           <OrderAiQaSection orderId={orderId} />
           {/* 주문 비교 테이블 영역 */}
           <OrderDetailSection orderId={orderId} />
-          {/* 주문 검수 결과 옵션 영역 */}
+          {/* 주문 인식 결과 옵션 영역 */}
           <OrderOptionSection
             orderId={orderId}
             setOrderId={setOrderId}

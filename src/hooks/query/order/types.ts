@@ -106,7 +106,7 @@ export type orderListResponseDataType = {
   orderDetails: orderDetailType[];
 
   /**
-   * Ai가 검수한 주문 정보 결과
+   * Ai가 인식한 주문 정보 결과
    */
   recognitionResults: Omit<orderDetailType, 'isMatched'>[];
 

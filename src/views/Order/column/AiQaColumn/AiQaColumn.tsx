@@ -15,7 +15,7 @@ const AiQaColumn = () =>
     {
       key: 'isMatched',
       dataIndex: 'isMatched',
-      title: 'AI 검수결과',
+      title: 'Ai 인식결과',
     },
   ].map(item => ({
     ...item,
