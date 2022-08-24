@@ -15,23 +15,10 @@ export const OrderAiQaSectionStyle = styled.section`
 
   .ant-table-tbody {
     font-weight: bold;
-    & tr {
-      & > td {
-        border-bottom: 1px solid ${props => props.theme.color.pip_gray_01};
-      }
-    }
   }
 
   .ant-table-tbody > tr.ant-table-row:hover > td {
     background: none !important;
-  }
-
-  .matched {
-    background-color: ${props => props.theme.color.pip_green};
-  }
-
-  .unmatched {
-    background-color: ${props => props.theme.color.pip_red};
   }
 `;
 

@@ -21,8 +21,8 @@ const OrderColumn = () =>
         props: {
           style: {
             backgroundColor: record
-              ? theme.color.pip_green
-              : theme.color.pip_red,
+              ? theme.color.pip_green_02
+              : theme.color.pip_pink,
             fontWeight: 'bold',
           },
         },

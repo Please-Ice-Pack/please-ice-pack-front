@@ -77,8 +77,8 @@ export type orderStatusMutateVariableType = {
  */
 export type orderListResponseType = {
   code: string;
-  data: orderListResponseDataType;
   message: string;
+  data: orderListResponseDataType | null;
 };
 
 /**
@@ -124,16 +124,11 @@ export type orderListResponseDataType = {
  */
 export type orderStatusResponseType = {
   code: string;
+  message: string;
   data: {
     employee: number;
     isMatched: boolean;
     packingId: number;
     status: orderPackingStatusType;
-  };
-  message: string;
-  page: {
-    number: number;
-    size: number;
-    totalCount: number;
-  };
+  } | null;
 };

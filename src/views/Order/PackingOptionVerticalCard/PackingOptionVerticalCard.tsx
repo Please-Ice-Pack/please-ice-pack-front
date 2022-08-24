@@ -31,11 +31,11 @@ const PackingOptionVerticalCard: FC<
           <>
             <div className="size-option">
               <div className="size-title">권장 사이즈</div>
-              <div>{size || '-'}</div>
+              <div className="value">{size || '-'}</div>
             </div>
             <div className="number-option">
               <div className="number-title">권장 사용 개수</div>
-              <div>{!!number ? `${number}개` : '-'}</div>
+              <div className="value">{!!number ? `${number}개` : '-'}</div>
             </div>
           </>
         ) : (

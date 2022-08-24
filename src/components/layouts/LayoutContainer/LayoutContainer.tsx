@@ -2,14 +2,12 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 
 import Header from '@components/layouts/Header';
-import { LayoutStyle, MainStyle } from './style';
+import { LayoutStyle } from './style';
 
 const LayoutContainer = () => (
   <LayoutStyle>
     <Header />
-    <MainStyle>
-      <Outlet />
-    </MainStyle>
+    <Outlet />
   </LayoutStyle>
 );
 

@@ -56,7 +56,7 @@ const OrderOptionSection: FC<IOrderOptionSectionProps> = props => {
 
   return (
     <OrderOptionSectionStyle>
-      <OrderContainer title="권장 패킹 옵션">
+      <OrderContainer title="권장 포장 옵션">
         <VerticalCardSectionStyle>
           <PackingOptionVerticalCard
             title="박스"
@@ -102,7 +102,7 @@ const OrderOptionSection: FC<IOrderOptionSectionProps> = props => {
             누락 보고 <div className="error-sub-title">나중에 작업하기</div>
           </Button>
           <Button
-            color={theme.color.pip_green}
+            color={theme.color.pip_green_01}
             radius={25}
             onClick={onPackingDone}
             disabled={!isOrderListFetched}
