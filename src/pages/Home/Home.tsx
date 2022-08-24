@@ -1,5 +1,12 @@
 import React from 'react';
 
-const Home = () => <div>Home</div>;
+import { HomeStyle } from '@pages/Home/style';
+import OrderContent from '@views/Order/OrderContent';
+
+const Home = () => (
+  <HomeStyle>
+    <OrderContent />
+  </HomeStyle>
+);
 
 export default Home;
