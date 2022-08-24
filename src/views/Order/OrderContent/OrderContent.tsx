@@ -1,6 +1,8 @@
 import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
+import Error400 from '@pages/Error/Error400';
+import Loading from '@components/Loading';
 import { useOrderDetail } from '@hooks/order/useOrderDetail';
 import OrderOptionSection from '@views/Order/OrderOptionSection';
 import OrderAiQaSection from '@views/Order/OrderAiQaSection';
@@ -19,8 +21,8 @@ const OrderContent = () => {
 
   return (
     <OrderContentStyle>
-      <ErrorBoundary fallback={<div>에러 발생!</div>}>
-        <Suspense fallback={<div>로딩중...</div>}>
+      <ErrorBoundary FallbackComponent={Error400}>
+        <Suspense fallback={<Loading />}>
           {/* AI 검수결과 테이블 영역 */}
           <OrderAiQaSection
             orderId={orderId}

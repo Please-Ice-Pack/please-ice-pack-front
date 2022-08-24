@@ -24,8 +24,10 @@ const OrderAiQaSection: FC<IOrderAiQaSectionProps> = props => {
     setPackingOrderList(prev => [
       ...prev,
       {
-        packingId: data.data.packingInfo.packingId,
-        isMatched: data.data.packingInfo.isMatched ? '이상 없음' : '이상 있음',
+        packingId: data!.data!.packingInfo.packingId,
+        isMatched: data!.data!.packingInfo.isMatched
+          ? '이상 없음'
+          : '이상 있음',
       },
     ]);
   }, [data, setPackingOrderList]);
