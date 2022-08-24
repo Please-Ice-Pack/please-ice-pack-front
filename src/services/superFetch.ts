@@ -58,7 +58,28 @@ export const postFetcher = <T>({
   toast.promise(
     async () => {
       const response = await superFetch.post(url, data);
-      console.log('res: ', response);
+      return response.data;
+    },
+    {
+      pending: '로딩중...',
+      success: successMessage,
+      error: {
+        render({ data }: any) {
+          return data?.response?.data.message || errorMessage;
+        },
+      },
+    },
+  );
+
+export const patchFetcher = <T>({
+  url,
+  successMessage,
+  errorMessage,
+  data,
+}: postFetchArgs<T>) =>
+  toast.promise(
+    async () => {
+      const response = await superFetch.patch(url, data);
       return response.data;
     },
     {

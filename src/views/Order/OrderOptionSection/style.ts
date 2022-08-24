@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 
 export const OrderOptionSectionStyle = styled.section`
-  .packing-time {
-    font-weight: bold;
-    text-align: right;
-    margin-bottom: 20px;
-  }
-
   .result-option-section {
     margin-top: 30px;
 

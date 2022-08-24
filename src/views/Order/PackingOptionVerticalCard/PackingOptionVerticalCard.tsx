@@ -10,7 +10,7 @@ import {
 interface IPackingOptionVerticalCardProps {
   title: string;
   isFetched: boolean;
-  size?: number | null;
+  size?: string | null;
   number?: number | null;
   imgUrl: string;
 }

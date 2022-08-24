@@ -45,3 +45,25 @@ export const COLD_TYPE = {
    */
   FROZEN: 'FROZEN',
 };
+
+/**
+ * 주문 포장 상태
+ */
+export const ORDER_PACKING_STATUS = {
+  /**
+   * 포장 진행 전
+   */
+  PRE_PROGRESS: 'PRE_PROGRESS',
+  /**
+   * 포장 진행 중
+   */
+  IN_PROGRESS: 'IN_PROGRESS',
+  /**
+   * 포장 완료
+   */
+  DONE: 'DONE',
+  /**
+   * 포장 보류
+   */
+  HOLD: 'HOLD',
+};

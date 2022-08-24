@@ -1,43 +1,43 @@
 import { rest } from 'msw';
 
+import { ORDER_PACKING_STATUS } from '@constants/order/order';
+
 const baseUrl = process.env.REACT_APP_API_URL;
 
 export const handlers = [
   /**
    * 로그인 api mock response
    */
-  rest.post(`${baseUrl}/v1/members/login`, (req, res, ctx) => {
-    req.json().then(payload => {
-      const { identification, password } = payload;
+  rest.post(`${baseUrl}/v1/members/login`, async (req, res, ctx) => {
+    const { identification, password } = await req.json();
 
-      /**
-       * 아이디와 비밀번호가 맞지 않으면 에러 응답
-       */
-      if (identification !== 'testId' || password !== 'testPassword') {
-        return res(
-          ctx.status(400),
-          ctx.json({
-            code: 'NOT_FOUND',
-            message: '로그인 실패!!!',
-          }),
-        );
-      }
-
-      /**
-       * 아이디 비밀번호가 일치할 시 로그인 성공 응답
-       */
+    /**
+     * 아이디와 비밀번호가 맞지 않으면 에러 응답
+     */
+    if (identification !== 'testId' || password !== 'testPassword') {
       return res(
-        ctx.status(200),
+        ctx.status(400),
         ctx.json({
-          code: 'SUCCESS',
-          message: '로그인 성공!!',
-          data: {
-            accessToken:
-              'eyJ0eXAiOiJKV1sdasdADAsdasd.asdasfasfasd.asdasdasdasd-asdasdAWweWRQWEQDSAD',
-          },
+          code: 'NOT_FOUND',
+          message: '로그인 실패!!!',
         }),
       );
-    });
+    }
+
+    /**
+     * 아이디 비밀번호가 일치할 시 로그인 성공 응답
+     */
+    return res(
+      ctx.status(200),
+      ctx.json({
+        code: 'SUCCESS',
+        message: '로그인 성공!!',
+        data: {
+          accessToken:
+            'eyJ0eXAiOiJKV1sdasdADAsdasd.asdasfasfasd.asdasdasdasd-asdasdAWweWRQWEQDSAD',
+        },
+      }),
+    );
   }),
 
   /**
@@ -156,4 +156,74 @@ export const handlers = [
       }),
     ),
   ),
+
+  /**
+   * 주문 패킹 상태 변경 mock response
+   */
+  rest.patch(`${baseUrl}/v1/packings/status/1`, async (req, res, ctx) => {
+    const { status } = await req.json();
+    switch (status) {
+      case ORDER_PACKING_STATUS.PRE_PROGRESS:
+        return res(
+          ctx.status(200),
+          ctx.json({
+            code: 'SUCCESS',
+            data: {
+              employee: 0,
+              isMatched: true,
+              packingId: 0,
+              status: 'PRE_PROGRESS',
+            },
+          }),
+        );
+      case ORDER_PACKING_STATUS.IN_PROGRESS:
+        return res(
+          ctx.status(200),
+          ctx.json({
+            code: 'SUCCESS',
+            data: {
+              employee: 0,
+              isMatched: true,
+              packingId: 0,
+              status: 'IN_PROGRESS',
+            },
+          }),
+        );
+      case ORDER_PACKING_STATUS.DONE:
+        return res(
+          ctx.status(200),
+          ctx.json({
+            code: 'SUCCESS',
+            data: {
+              employee: 0,
+              isMatched: true,
+              packingId: 0,
+              status: 'DONE',
+            },
+          }),
+        );
+      case ORDER_PACKING_STATUS.HOLD:
+        return res(
+          ctx.status(200),
+          ctx.json({
+            code: 'SUCCESS',
+            data: {
+              employee: 0,
+              isMatched: true,
+              packingId: 0,
+              status: 'HOLD',
+            },
+          }),
+        );
+      default:
+        return res(
+          ctx.status(400),
+          ctx.json({
+            code: 'ERROR',
+            message: '패킹 상태 변경 요청 실패',
+            data: null,
+          }),
+        );
+    }
+  }),
 ];

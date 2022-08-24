@@ -8,8 +8,14 @@ import OrderDetailSection from '@views/Order/OrderDetailSection';
 import { OrderContentStyle } from './style';
 
 const OrderContent = () => {
-  const { orderId, setOrderId, packingOrderList, setPackingOrderList } =
-    useOrderDetail();
+  const {
+    orderId,
+    setOrderId,
+    packingOrderList,
+    setPackingOrderList,
+    onPackingDone,
+    onPackingHold,
+  } = useOrderDetail();
 
   return (
     <OrderContentStyle>
@@ -24,7 +30,12 @@ const OrderContent = () => {
           {/* 주문 비교 테이블 영역 */}
           <OrderDetailSection orderId={orderId} />
           {/* 주문 검수 결과 옵션 영역 */}
-          <OrderOptionSection orderId={orderId} setOrderId={setOrderId} />
+          <OrderOptionSection
+            orderId={orderId}
+            setOrderId={setOrderId}
+            onPackingDone={onPackingDone}
+            onPackingHold={onPackingHold}
+          />
         </Suspense>
       </ErrorBoundary>
     </OrderContentStyle>
