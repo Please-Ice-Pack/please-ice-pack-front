@@ -44,6 +44,7 @@
         "global-require": "off",
         "import/no-extraneous-dependencies":"off",
         "no-nested-ternary": "off",
+        "react/no-unstable-nested-components": "off",
         "@typescript-eslint/no-use-before-define": ["error"],
         "import/extensions": [
             "error",
