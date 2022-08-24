@@ -38,15 +38,6 @@ export const RightSideHeaderStyle = styled.div`
   gap: 15px;
 `;
 
-export const AuthOptionStyle = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 export const WorkGuideButtonStyle = styled(Button)``;
-
-export const AuthTypeStyle = styled.span`
-  margin-right: 10px;
-`;
 
 export const LogOutButtonStyle = styled(Button)``;
