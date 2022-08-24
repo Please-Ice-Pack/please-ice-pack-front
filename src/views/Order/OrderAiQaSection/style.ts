@@ -27,7 +27,7 @@ export const OrderAiQaSectionStyle = styled.section`
   }
 
   .matched {
-    background-color: ${props => props.theme.color.pip_green};
+    background-color: ${props => props.theme.color.pip_green_01};
   }
 
   .unmatched {

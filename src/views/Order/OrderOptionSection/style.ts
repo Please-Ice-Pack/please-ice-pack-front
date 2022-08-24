@@ -6,14 +6,14 @@ export const OrderOptionSectionStyle = styled.section`
 
     button {
       height: auto;
-      padding: 15px 0;
-      font-size: 30px;
+      padding: 15px 10px;
+      font-size: 25px;
       line-height: 30px;
 
       .scan-sub-title,
       .error-sub-title,
       .submit-sub-title {
-        font-size: 18px;
+        font-size: 15px;
       }
     }
 

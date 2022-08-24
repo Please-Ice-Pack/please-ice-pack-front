@@ -11,8 +11,8 @@ const color = {
   pip_gray_03: '#D9D9D9',
   pip_red: '#FF000F',
   pip_blue_01: '#F3F9FF',
-  pip_blue_02: '#FFFFFF',
-  pip_green: '#029723',
+  pip_green_01: '#029723',
+  pip_green_02: '#D7EADB',
   pip_orange: '#FF9900',
   pip_pink: '#F6CFCC',
 } as const;
