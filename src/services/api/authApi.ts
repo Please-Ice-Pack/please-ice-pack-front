@@ -10,7 +10,7 @@ export const AuthApi = {
       errorMessage: '로그인 실패',
       successMessage: '로그인 성공',
       data: {
-        identification: identification.split('@')[0],
+        identification,
         password,
       },
     });
