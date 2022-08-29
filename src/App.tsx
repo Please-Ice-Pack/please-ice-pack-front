@@ -8,6 +8,8 @@ import { ToastContainer } from 'react-toastify';
 import Home from '@pages/Home';
 import Login from '@pages/Login';
 import Error404 from '@pages/Error/Error404';
+import AuthProtected from '@components/AuthProtected';
+import LoginProtected from '@components/LoginProtected';
 import LayoutContainer from '@components/layouts/LayoutContainer';
 import { GlobalStyle } from '@styles/GlobalStyle';
 import theme from '@styles/theme';
@@ -35,11 +37,15 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <BrowserRouter>
             <Routes>
-              <Route element={<LayoutContainer />}>
-                <Route path={INTRO_PAGE_URL_PATH} element={<Home />} />
-                <Route path="*" element={<Error404 />} />
+              <Route element={<AuthProtected />}>
+                <Route element={<LayoutContainer />}>
+                  <Route path={INTRO_PAGE_URL_PATH} element={<Home />} />
+                  <Route path="*" element={<Error404 />} />
+                </Route>
               </Route>
-              <Route path={LOGIN_PAGE_URL_PATH} element={<Login />} />
+              <Route element={<LoginProtected />}>
+                <Route path={LOGIN_PAGE_URL_PATH} element={<Login />} />
+              </Route>
             </Routes>
           </BrowserRouter>
         </ThemeProvider>
