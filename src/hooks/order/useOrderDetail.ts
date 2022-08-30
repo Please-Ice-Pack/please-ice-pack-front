@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { Modal } from 'antd';
 
 import { useOrderListUpdate } from '@hooks/query/order/useOrderListUpdate';
-import { ORDER_PACKING_STATUS } from '@constants/order/order';
+import useSessionStorage from '@hooks/common/useSessionStorage';
+import { packingInfoType } from '@hooks/query/order/types';
+import { ORDER_LIST_KEY, ORDER_PACKING_STATUS } from '@constants/order/order';
 
 /**
  * 주문 번호를 관리하는 커스텀 훅
@@ -19,6 +21,14 @@ export const useOrderDetail = () => {
   const { mutate } = useOrderListUpdate(orderId);
 
   /**
+   * 포장 리스트 정보 및 작업 상태
+   */
+  const {
+    sessionState: packingListState,
+    setSessionState: setPackingListState,
+  } = useSessionStorage<packingInfoType[]>(ORDER_LIST_KEY.PACKING, []);
+
+  /**
    * 정상 완료 버튼을 눌렀을 때
    */
   const onPackingDone = () => {
@@ -32,6 +42,26 @@ export const useOrderDetail = () => {
           status: ORDER_PACKING_STATUS.DONE,
         });
         setOrderId(null);
+
+        /**
+         * 마지막 주문 정보를 삭제 후 새로운 정보(주문 처리 여부, 처리 상태)를 넣어서 덮어씌우기
+         */
+        const prevPackingId =
+          packingListState[packingListState.length - 1].packingId;
+        const prevIsMatched =
+          packingListState[packingListState.length - 1].isMatched;
+
+        packingListState.pop();
+
+        setPackingListState(prev => [
+          ...prev,
+          {
+            packingId: prevPackingId,
+            isMatched: prevIsMatched,
+            isChecked: true,
+            status: ORDER_PACKING_STATUS.DONE,
+          },
+        ]);
       },
     });
   };
@@ -50,6 +80,26 @@ export const useOrderDetail = () => {
           status: ORDER_PACKING_STATUS.HOLD,
         });
         setOrderId(null);
+
+        /**
+         * 마지막 주문 정보를 삭제 후 새로운 정보(주문 처리 여부, 처리 상태)를 넣어서 덮어씌우기
+         */
+        const prevPackingId =
+          packingListState[packingListState.length - 1].packingId;
+        const prevIsMatched =
+          packingListState[packingListState.length - 1].isMatched;
+
+        packingListState.pop();
+
+        setPackingListState(prev => [
+          ...prev,
+          {
+            packingId: prevPackingId,
+            isMatched: prevIsMatched,
+            isChecked: true,
+            status: ORDER_PACKING_STATUS.HOLD,
+          },
+        ]);
       },
     });
   };
@@ -59,5 +109,7 @@ export const useOrderDetail = () => {
     setOrderId,
     onPackingDone,
     onPackingHold,
+    packingListState,
+    setPackingListState,
   };
 };

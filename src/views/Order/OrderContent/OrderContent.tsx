@@ -10,15 +10,25 @@ import OrderDetailSection from '@views/Order/OrderDetailSection';
 import { OrderContentStyle } from './style';
 
 const OrderContent = () => {
-  const { orderId, setOrderId, onPackingDone, onPackingHold } =
-    useOrderDetail();
+  const {
+    orderId,
+    setOrderId,
+    onPackingDone,
+    onPackingHold,
+    packingListState,
+    setPackingListState,
+  } = useOrderDetail();
 
   return (
     <OrderContentStyle>
       <ErrorBoundary FallbackComponent={Error400}>
         <Suspense fallback={<Loading />}>
           {/* Ai 인식결과 테이블 영역 */}
-          <OrderAiQaSection orderId={orderId} />
+          <OrderAiQaSection
+            orderId={orderId}
+            packingListState={packingListState}
+            setPackingListState={setPackingListState}
+          />
           {/* 주문 비교 테이블 영역 */}
           <OrderDetailSection orderId={orderId} />
           {/* 주문 인식 결과 옵션 영역 */}
