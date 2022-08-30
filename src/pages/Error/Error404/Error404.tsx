@@ -1,16 +1,11 @@
 import React from 'react';
+
 import { Error404Container } from '@pages/Error/Error404/style';
-import { WARNING_LOGO_IMAMGE_PATH } from '@constants/url/imageUrls';
 
 const Error404 = () => (
   <Error404Container>
     <div className="error-box">
-      <img
-        src={WARNING_LOGO_IMAMGE_PATH}
-        width={60}
-        height={60}
-        alt="주의 아이콘"
-      />
+      <div className="error-status">404</div>
       <div className="error-title">찾으시는 페이지가 없습니다.</div>
       <p className="error-desc">
         현재 요청하신 페이지를 찾을 수 없거나 오류가 발생하였습니다.

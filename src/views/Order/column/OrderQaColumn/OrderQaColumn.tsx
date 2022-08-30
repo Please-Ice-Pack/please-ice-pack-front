@@ -2,6 +2,8 @@ import React from 'react';
 import { Tooltip } from 'antd';
 import { ColumnType } from 'antd/lib/table';
 
+import { COLD_TYPE } from '@constants/order/order';
+
 /**
  * Ai 인식결과 테이블에 해당하는 column
  * @constructor
@@ -39,7 +41,18 @@ const OrderQaColumn = () =>
       dataIndex: 'coldType',
       title: '타입',
       width: 15,
-      render: (record: string) => (record === 'NORMAL' ? '냉장' : '냉동'),
+      render: (record: string) => {
+        switch (record) {
+          case COLD_TYPE.NORMAL:
+            return '상온';
+          case COLD_TYPE.REFRIGERATED:
+            return '냉장';
+          case COLD_TYPE.FROZEN:
+            return '냉동';
+          default:
+            return '';
+        }
+      },
     },
   ].map(item => ({
     ...item,

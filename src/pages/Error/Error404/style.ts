@@ -11,6 +11,12 @@ export const Error404Container = styled.div`
     justify-content: center;
     align-items: center;
 
+    .error-status {
+      font-weight: bold;
+      font-size: 100px;
+      line-height: 100px;
+    }
+
     .error-title {
       margin-top: 5px;
       font-size: 28px;

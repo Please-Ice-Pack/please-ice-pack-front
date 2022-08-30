@@ -29,11 +29,18 @@ export const useOrderDetail = () => {
   } = useSessionStorage<packingInfoType[]>(ORDER_LIST_KEY.PACKING, []);
 
   /**
+   * 최근 포장 주문 정보
+   */
+  const recentPackingInfo = packingListState[packingListState.length - 1];
+
+  /**
    * 정상 완료 버튼을 눌렀을 때
    */
   const onPackingDone = () => {
     Modal.confirm({
-      title: 'Ai 인식 결과와 같은 결과입니다. 다음 작업을 진행하시겠습니까?',
+      title: `Ai 인식 결과와 ${
+        recentPackingInfo.isMatched === '이상 없음' ? '같은' : '다른'
+      } 결과입니다. 다음 작업을 진행하시겠습니까?`,
       okText: '예',
       cancelText: '아니오',
       onOk: () => {
@@ -46,10 +53,8 @@ export const useOrderDetail = () => {
         /**
          * 마지막 주문 정보를 삭제 후 새로운 정보(주문 처리 여부, 처리 상태)를 넣어서 덮어씌우기
          */
-        const prevPackingId =
-          packingListState[packingListState.length - 1].packingId;
-        const prevIsMatched =
-          packingListState[packingListState.length - 1].isMatched;
+        const prevPackingId = recentPackingInfo.packingId;
+        const prevIsMatched = recentPackingInfo.isMatched;
 
         packingListState.pop();
 
@@ -71,7 +76,9 @@ export const useOrderDetail = () => {
    */
   const onPackingHold = () => {
     Modal.confirm({
-      title: 'Ai 인식 결과와 다른 결과입니다. 그대로 진행하시겠습니까?',
+      title: `Ai 인식 결과와 ${
+        recentPackingInfo.isMatched === '이상 없음' ? '같은' : '다른'
+      } 결과입니다. 나중에 작업을 진행하시겠습니까?`,
       okText: '예',
       cancelText: '아니오',
       onOk: () => {
@@ -84,10 +91,8 @@ export const useOrderDetail = () => {
         /**
          * 마지막 주문 정보를 삭제 후 새로운 정보(주문 처리 여부, 처리 상태)를 넣어서 덮어씌우기
          */
-        const prevPackingId =
-          packingListState[packingListState.length - 1].packingId;
-        const prevIsMatched =
-          packingListState[packingListState.length - 1].isMatched;
+        const prevPackingId = recentPackingInfo.packingId;
+        const prevIsMatched = recentPackingInfo.isMatched;
 
         packingListState.pop();
 
