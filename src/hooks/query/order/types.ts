@@ -46,11 +46,25 @@ export type refrigerantsOptionType = {
 };
 
 /**
- * 주문 번호와 해당 주문과 Ai 검출 결과가 일치하는지 여부
+ * 스캔한 주문에 대한 정보
  */
 export type packingInfoType = {
+  /**
+   * 주문 번호
+   */
   packingId: number;
+  /**
+   * 주문 정보와 Ai 인식 결과가 일치하는지
+   */
   isMatched: boolean | string;
+  /**
+   * 주문이 처리되었는지 여부
+   */
+  isChecked?: boolean;
+  /**
+   * 주문 처리 상태
+   */
+  status?: orderPackingStatusType;
 };
 
 /**

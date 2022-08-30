@@ -20,6 +20,14 @@ export const OrderAiQaSectionStyle = styled.section`
   .ant-table-tbody > tr.ant-table-row:hover > td {
     background: none !important;
   }
+
+  .checked {
+    background-color: ${props => props.theme.color.pip_green_02};
+  }
+
+  .unchecked {
+    background-color: ${props => props.theme.color.pip_pink};
+  }
 `;
 
 export const OrderQaListTableStyle = styled(Table)`
