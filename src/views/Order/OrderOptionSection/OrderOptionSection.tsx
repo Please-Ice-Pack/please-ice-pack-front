@@ -1,4 +1,10 @@
-import React, { Dispatch, SetStateAction, FC, useCallback } from 'react';
+import React, {
+  Dispatch,
+  SetStateAction,
+  FC,
+  useCallback,
+  useState,
+} from 'react';
 
 import Button from '@components/Button';
 import {
@@ -25,11 +31,17 @@ const OrderOptionSection: FC<IOrderOptionSectionProps> = props => {
   const { orderId, setOrderId, onPackingDone, onPackingHold } = props;
 
   /**
+   * 시연을 위한 mock test flag
+   */
+  const [testFlag, setTestFlag] = useState(false);
+
+  /**
    * 스캔 버튼을 눌렀을 때 테스트용 주문 번호 설정
    */
   const onClickScan = useCallback(() => {
-    setOrderId(1);
-  }, [setOrderId]);
+    setOrderId(testFlag ? 1 : 2);
+    setTestFlag(true);
+  }, [testFlag, setOrderId]);
 
   const { data: orderListData, isFetched: isOrderListFetched } = useOrderList(
     orderId,
