@@ -31,8 +31,9 @@ export const useOrderDetail = () => {
   /**
    * 최근 포장 주문 정보
    */
-  const recentPackingInfo =
-    packingListState[packingListState ? packingListState.length - 1 : 0];
+  const recentPackingInfo = packingListState
+    ? packingListState[packingListState.length - 1]
+    : null;
 
   /**
    * 정상 완료 버튼을 눌렀을 때
@@ -40,7 +41,7 @@ export const useOrderDetail = () => {
   const onPackingDone = () => {
     Modal.confirm({
       title: `Ai 인식 결과와 ${
-        recentPackingInfo.isMatched === '이상 없음' ? '같은' : '다른'
+        recentPackingInfo!.isMatched === '이상 없음' ? '같은' : '다른'
       } 결과입니다. 다음 작업을 진행하시겠습니까?`,
       okText: '예',
       cancelText: '아니오',
@@ -54,20 +55,22 @@ export const useOrderDetail = () => {
         /**
          * 마지막 주문 정보를 삭제 후 새로운 정보(주문 처리 여부, 처리 상태)를 넣어서 덮어씌우기
          */
-        const prevPackingId = recentPackingInfo.packingId;
-        const prevIsMatched = recentPackingInfo.isMatched;
+        const prevPackingId = recentPackingInfo!.packingId;
+        const prevIsMatched = recentPackingInfo!.isMatched;
 
         packingListState.pop();
 
-        setPackingListState(prev => [
-          ...prev,
-          {
-            packingId: prevPackingId,
-            isMatched: prevIsMatched,
-            isChecked: true,
-            status: ORDER_PACKING_STATUS.DONE,
-          },
-        ]);
+        if (packingListState) {
+          setPackingListState(prev => [
+            ...prev,
+            {
+              packingId: prevPackingId,
+              isMatched: prevIsMatched,
+              isChecked: true,
+              status: ORDER_PACKING_STATUS.DONE,
+            },
+          ]);
+        }
       },
     });
   };
@@ -78,7 +81,7 @@ export const useOrderDetail = () => {
   const onPackingHold = () => {
     Modal.confirm({
       title: `Ai 인식 결과와 ${
-        recentPackingInfo.isMatched === '이상 없음' ? '같은' : '다른'
+        recentPackingInfo!.isMatched === '이상 없음' ? '같은' : '다른'
       } 결과입니다. 나중에 작업을 진행하시겠습니까?`,
       okText: '예',
       cancelText: '아니오',
