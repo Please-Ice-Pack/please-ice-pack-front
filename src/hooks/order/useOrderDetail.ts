@@ -95,8 +95,8 @@ export const useOrderDetail = () => {
         /**
          * 마지막 주문 정보를 삭제 후 새로운 정보(주문 처리 여부, 처리 상태)를 넣어서 덮어씌우기
          */
-        const prevPackingId = recentPackingInfo.packingId;
-        const prevIsMatched = recentPackingInfo.isMatched;
+        const prevPackingId = recentPackingInfo!.packingId;
+        const prevIsMatched = recentPackingInfo!.isMatched;
 
         packingListState.pop();
 
