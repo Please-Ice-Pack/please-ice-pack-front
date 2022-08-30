@@ -31,7 +31,7 @@ export const useOrderDetail = () => {
   /**
    * 최근 포장 주문 정보
    */
-  const recentPackingInfo = packingListState[packingListState.length - 1];
+  const recentPackingInfo = packingListState[packingListState?.length - 1];
 
   /**
    * 정상 완료 버튼을 눌렀을 때
